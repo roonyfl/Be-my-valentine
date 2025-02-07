@@ -1,21 +1,52 @@
+/* General Styles */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #ffe6f7;
     margin: 0;
     padding: 0;
     text-align: center;
+    overflow: hidden; /* Prevent scrolling due to animations */
 }
 
+/* Header */
 header {
     background-color: #ff66b2;
     color: white;
     padding: 20px 0;
     font-size: 2.5em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
 }
 
+/* Slideshow Background */
+.slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.slideshow img.active {
+    opacity: 1;
+}
+
+/* Main Content */
 .container {
     margin-top: 50px;
+    position: relative;
+    z-index: 2;
 }
 
 .heart {
@@ -33,6 +64,7 @@ header {
     margin-top: 40px;
 }
 
+/* Buttons */
 .yes-btn, .no-btn {
     padding: 15px 30px;
     font-size: 1.5em;
@@ -40,7 +72,7 @@ header {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .yes-btn {
@@ -52,18 +84,50 @@ header {
     background-color: #ff3385;
 }
 
+/* No Button - Moves Away */
 .no-btn {
     background-color: #ffcccc;
     color: #ff66b2;
+    position: relative;
 }
 
 .no-btn:hover {
     background-color: #ff99cc;
+    position: absolute;
+    transition: 0.3s;
 }
 
+/* Floating Hearts Animation */
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-200px); opacity: 0; }
+}
+
+.floating-heart {
+    position: absolute;
+    color: red;
+    font-size: 30px;
+    animation: float 3s linear infinite;
+}
+
+/* Audio Player Styling */
+audio {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    background: rgba(255, 102, 178, 0.8);
+    border-radius: 20px;
+    padding: 5px;
+}
+
+/* Footer */
 footer {
     margin-top: 50px;
     font-size: 1.2em;
     color: #ff66b2;
     padding: 20px;
+    position: relative;
+    z-index: 2;
 }
